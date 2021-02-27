@@ -83,7 +83,9 @@ void BatteryPrinting(int Battery)
   if(Battery > MaxBatteryLevel) //If value is to big ... set it to 4
   Battery = MaxBatteryLevel;
 
-  for(int i = MaxBatteryLevel; i > 0; i--){ //example Battery is 3: The Outcome will be 3 PLuses and one minus at the end
+  //example Battery is 3: The Outcome will be 3 PLuses and one minus at the end
+  for(int i = MaxBatteryLevel; i > 0; i--)
+  { 
     if(Battery-- > 0)
     lcd.print("+");
     else
@@ -125,8 +127,10 @@ void GetSensorValues(SensorValues* Values)
 int GetHydrogenValue()
 {
   int value;
+  // turn on the sensor and wait for wrong values to disappear
   digitalWrite(HydSensorGRND, LOW);
   delay(300);
+  // measure and turn off
   value = analogRead(HydSensorPin);
   digitalWrite(HydSensorGRND, HIGH);
   return value;

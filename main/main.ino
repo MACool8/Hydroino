@@ -22,6 +22,6 @@ void loop()
     WaterThePlant();
   }
 
- 
+  // sleep for 30 min and check again
   SleepTwoMinutes(15);  
 }
