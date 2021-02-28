@@ -7,8 +7,8 @@
 #define LC_d6 3
 #define LC_d7 2
 #define HydSensorPin A0
-#define HydroPumpGRND 8
-#define HydSensorGRND 9
+#define HydroPumpGRND 9
+#define HydSensorGRND 8
 #define ADC_MAX 1023
 
 //#define lcd.print Serial.println
@@ -47,8 +47,8 @@ void SleepTwoMinutes(int TwoMinuteCount)
 //Funktion which needs to be called for using a Display
 void InitDisplay()
 {
-  lcd.begin(16, 2);
-  //Serial.begin(9600);
+  //lcd.begin(16, 2);
+  Serial.begin(9600);
 }
 
 //Funktion to Print everything on the LCD Display
@@ -122,6 +122,9 @@ void GetSensorValues(SensorValues* Values)
 
   //Get Fertilization
   Values->Fertilization = 0;
+  
+  Serial.print("Hydrogen = ");
+  Serial.println(Values->Hydrogen);
 }
 
 int GetHydrogenValue()
@@ -140,6 +143,7 @@ void InitHydrogenSensor()
 {
   pinMode(HydSensorPin, INPUT);
   pinMode(HydSensorGRND, OUTPUT);
+  pinMode(HydroPumpGRND, OUTPUT);
 }
 
 bool DippedUnderHydrogenTreshold = false;
@@ -168,7 +172,7 @@ bool IsWaterNeeded(int HydrogenPercent)
 //Process for Watering the Plants
 void WaterThePlant()
 {
-    digitalWrite(HydroPumpGRND, LOW);
-    delay(2000);
     digitalWrite(HydroPumpGRND, HIGH);
+    delay(6000);
+    digitalWrite(HydroPumpGRND, LOW);
 }

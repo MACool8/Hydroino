@@ -5,8 +5,9 @@ SensorValues Values;
 
 void setup() 
 {
-  //InitDisplay();
+  InitDisplay();
   InitHydrogenSensor();
+  delay(2000);
 }
 
 void loop() 
